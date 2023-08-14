@@ -48,9 +48,8 @@ function info(city) {
             //return count
                 var itemsCnt = $items.length; //정보단위 갯수
                 var tm = $($items[0]).find("dataTime").text();
-                var list = "<h1>"+city+" 지역 대기정보 "+tm.substring(10)+"</h1><br />";
+                var list = "<h3>"+city+" 지역 대기정보 <br />"+tm+"</h3>";
                 list += "<TABLE><TR>";
-                list += "<TD>시간</TD>";
                 list += "<TD>지역명</TD>";
                 list += "<TD>아황산가스</TD>";
                 list += "<TD>일산화탄소</TD>";
@@ -63,7 +62,7 @@ function info(city) {
                 list += "<TD>미세먼지 1h등급</TD>";
                 list += "<TD>초미세먼지 1h등급</TD>";
                 list += "</TR>";
-                alert(itemsCnt);
+            //    alert(itemsCnt);
 
             //타임라인 갯수만큼 루프 돈다.
             $items.each(function (){
@@ -83,7 +82,7 @@ function info(city) {
                 var pm25Grade1h = $(this).find("pm25Grade1h").text();
 
                 function getGrade(param) {
-                // 파라미터가 2인 경우
+                // 파라미터가 1인 경우
                 if (param == 1) {
                     return "Good";
                     }
@@ -103,7 +102,6 @@ function info(city) {
                     else {
                        return "invalid parameter";
                      }
-
                 }
 
                 pm10Grade = getGrade(pm10Grade);
@@ -111,7 +109,6 @@ function info(city) {
                 pm10Grade1h = getGrade(pm10Grade1h);
                 pm25Grade1h = getGrade(pm25Grade1h);
 
-                str += "<TD>"+dataTime.substring(0,10);+"</TD>";
                 str += "<TD>"+stationName+"</TD>";
                 str += "<TD>"+so2Value+"</TD>";
                 str += "<TD>"+coValue+"</TD>";
@@ -124,8 +121,6 @@ function info(city) {
                 str += "<TD>"+pm10Grade1h+"</TD>";
                 str += "<TD>"+pm25Grade1h+"</TD>";
                 str += "</TR>";
-
-
 
                 list = list + str;
             })
@@ -152,12 +147,12 @@ function info(city) {
 
 <div data-role="page" id="page">
 <div data-role="header">
-<h1>지역별 미세먼지</h1>
+<h2>지역별 미세먼지</h2>
 </div>
 <div data-role="content" >
 
     <div>
-        <select id="city">
+        <select id="city" >
                <option value="서울" selected="selected">서울</option>
                <option value="경기">경기</option>
                <option value="강원">강원</option>
@@ -177,12 +172,9 @@ function info(city) {
                <option value="세종">세종</option>
                <option value="전국">전국</option>
         </select>
-    </div>
-    <br />
-    <button id="info" style="cursor: hand">INFO</button>
+        <button id="info" style="cursor: hand">조회</button>
     </div>
 
-    <br />
     <div id="localdust">
     </div>
     <br />
